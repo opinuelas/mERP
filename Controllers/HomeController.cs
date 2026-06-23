@@ -1,9 +1,11 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using mERP.Models;
 
 namespace mERP.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     public IActionResult Index()
@@ -12,6 +14,12 @@ public class HomeController : Controller
     }
 
     public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [AllowAnonymous]
+    public IActionResult AccessDenied()
     {
         return View();
     }
