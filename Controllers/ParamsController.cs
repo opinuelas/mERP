@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using mERP.Data;
 using mERP.Filters;
 
@@ -56,10 +57,12 @@ namespace mERP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,Alphac,Descrip,Value,Udate,Userid")] Param @param)
+        public async Task<IActionResult> Create([Bind("Id,Code,Alphac,Descrip,Value")] Param @param)
         {
             if (ModelState.IsValid)
             {
+                @param.Udate = DateTime.Now;
+                @param.Userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 _context.Add(@param);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -88,7 +91,7 @@ namespace mERP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(decimal id, [Bind("Id,Code,Alphac,Descrip,Value,Udate,Userid")] Param @param)
+        public async Task<IActionResult> Edit(decimal id, [Bind("Id,Code,Alphac,Descrip,Value")] Param @param)
         {
             if (id != @param.Id)
             {
@@ -99,6 +102,8 @@ namespace mERP.Controllers
             {
                 try
                 {
+                    @param.Udate = DateTime.Now;
+                    @param.Userid = User.FindFirstValue(ClaimTypes.NameIdentifier); //usrid
                     _context.Update(@param);
                     await _context.SaveChangesAsync();
                 }
