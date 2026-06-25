@@ -43,5 +43,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapControllerRoute(
+    name: "catchall",
+    pattern: "{*url}",
+    defaults: new { controller = "Home", action = "IncorrectOption" });
 
 app.Run();

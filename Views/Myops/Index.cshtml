@@ -1,0 +1,29 @@
+@model IEnumerable<mERP.Data.Raccess>
+
+@{
+    ViewData["Title"] = "Menus";
+}
+
+<h1>Menus</h1>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Description</th>
+            <th>Page</th>
+            <th>Controller</th>
+            <th>Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Accdesc)</td>
+                <td>@Html.DisplayFor(modelItem => item.Accpag)</td>
+                <td>@Html.DisplayFor(modelItem => item.Accctlr)</td>
+                <td>@Html.DisplayFor(modelItem => item.Accord)</td>
+            </tr>
+        }
+    </tbody>
+</table>
