@@ -10,19 +10,16 @@
     <thead class="table-dark">
         <tr>
             <th>Description</th>
-            <th>Page</th>
-            <th>Controller</th>
-            <th>Order</th>
+            <th>Option</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Where(x => x.Acctar == "Y"))
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Accdesc)</td>
-                <td>@Html.DisplayFor(modelItem => item.Accpag)</td>
-                <td>@Html.DisplayFor(modelItem => item.Accctlr)</td>
-                <td>@Html.DisplayFor(modelItem => item.Accord)</td>
+                <td><a href="/@item.Accctlr/Index">@item.Accctlr</a></td>
+                
             </tr>
         }
     </tbody>
