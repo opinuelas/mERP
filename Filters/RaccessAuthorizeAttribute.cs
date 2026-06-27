@@ -7,7 +7,7 @@ namespace mERP.Filters;
 
 public class RaccessAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter
 {
-    // accval positions: 0=Consult, 1=Create, 2=Edit, 3=Delete
+    // accval positions: 0=Consult, 1=Create, 2=Edit, 3=Delete/ChgPwd
     private static readonly Dictionary<string, int> ActionPositionMap = new(StringComparer.OrdinalIgnoreCase)
     {
         { "Index",   0 },
@@ -15,6 +15,7 @@ public class RaccessAuthorizeAttribute : Attribute, IAsyncAuthorizationFilter
         { "Create",  1 },
         { "Edit",    2 },
         { "Delete",  3 },
+        { "RstPwd",  3 },
     };
 
     public async Task OnAuthorizationAsync(AuthorizationFilterContext context)

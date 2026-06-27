@@ -1,0 +1,76 @@
+@model mERP.Data.User
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usrid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usrid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usrname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usrname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usremail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usremail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usrcell)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usrcell)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usrsts)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Usrsts == 1)
+            {
+                <i class="bi bi-circle-fill text-success"></i> <span>Active</span>
+            }
+            else
+            {
+                <i class="bi bi-circle-fill text-danger"></i> <span>Inactive</span>
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usrrole)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usrrole)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usrpar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usrpar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Usriniop)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Usriniop)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

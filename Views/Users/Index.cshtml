@@ -1,0 +1,84 @@
+@model IEnumerable<mERP.Data.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usrid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usrname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usremail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usrcell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usrsts)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usrrole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usrpar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usriniop)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usrid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usrname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usremail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usrcell)
+            </td>
+            <td>
+                @if (item.Usrsts == 1)
+                {
+                    <i class="bi bi-circle-fill text-success"></i> <span>Active</span>
+                }
+                else
+                {
+                    <i class="bi bi-circle-fill text-danger"></i> <span>Inactive</span>
+                }
+            </td>
+            <td>
+                @((ViewBag.RoleNames as Dictionary<int, string>)?.GetValueOrDefault(item.Usrrole ?? 0) ?? "")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usrpar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usriniop)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
